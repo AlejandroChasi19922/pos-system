@@ -1,0 +1,64 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Customer {
+  id          String       @id @default(uuid())
+  dniTaxId    String       @unique @map("dni_tax_id")
+  firstName   String       @map("first_name")
+  lastName    String       @map("last_name")
+  email       String
+  phone       String?
+  address     String?
+  createdAt   DateTime     @default(now()) @map("created_at")
+  salesOrders SalesOrder[]
+
+  @@map("customers")
+}
+
+model Product {
+  id                String             @id @default(uuid())
+  code              String             @unique
+  name              String
+  unitPrice         Float              @map("unit_price")
+  stock             Int
+  createdAt         DateTime           @default(now()) @map("created_at")
+  salesOrderDetails SalesOrderDetail[]
+
+  @@map("products")
+}
+
+model SalesOrder {
+  id         String             @id @default(uuid())
+  orderNumber Int               @unique @map("order_number")
+  customerId String             @map("customer_id")
+  customer   Customer           @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  issueDate  DateTime           @default(now()) @map("issue_date")
+  subtotal   Float
+  taxRate    Float              @default(0.15) @map("tax_rate")
+  taxAmount  Float              @map("tax_amount")
+  total      Float
+  createdAt  DateTime           @default(now()) @map("created_at")
+  details    SalesOrderDetail[]
+
+  @@map("sales_orders")
+}
+
+model SalesOrderDetail {
+  id           String     @id @default(uuid())
+  salesOrderId String     @map("sales_order_id")
+  salesOrder   SalesOrder @relation(fields: [salesOrderId], references: [id], onDelete: Cascade)
+  productId    String     @map("product_id")
+  product      Product    @relation(fields: [productId], references: [id], onDelete: Restrict)
+  unitPrice    Float      @map("unit_price")
+  quantity     Int
+  subtotal     Float
+
+  @@unique([salesOrderId, productId])
+  @@map("sales_order_details")
+}

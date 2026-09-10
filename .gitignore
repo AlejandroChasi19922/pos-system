@@ -1,0 +1,30 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js build output
+/.next/
+/out/
+
+# Production build
+/build
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment & local DB
+.env
+*.db
+*.db-journal
+
+# IDE & OS
+.DS_Store
+*.pem
+.vscode/
+.idea/
