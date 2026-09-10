@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "FacturaWeb - Punto de Venta & Facturación",
-  description: "Sistema de Facturación Web - Universidad Técnica de Ambato",
+  description: "Sistema Web de Punto de Venta & Facturación Electrónica",
 };
 
 export default function RootLayout({

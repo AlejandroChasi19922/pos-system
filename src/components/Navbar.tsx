@@ -17,7 +17,7 @@ export default function Navbar() {
             </div>
             <div>
               <h1 className="text-xl font-bold tracking-tight">FacturaWeb POS</h1>
-              <p className="text-xs text-slate-400">UTA - Punto de Venta & Facturación</p>
+              <p className="text-xs text-slate-400">Punto de Venta & Facturación Web</p>
             </div>
           </div>
           <nav className="flex space-x-2">
