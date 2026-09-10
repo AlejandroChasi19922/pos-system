@@ -3,6 +3,12 @@
 /.pnp
 .pnp.js
 
+# Visual Studio & IDEs
+.vs/
+*.vsidx
+*.suo
+*.user
+
 # Testing
 /coverage
 
@@ -23,8 +29,6 @@ yarn-error.log*
 *.db
 *.db-journal
 
-# IDE & OS
+# OS
 .DS_Store
 *.pem
-.vscode/
-.idea/
